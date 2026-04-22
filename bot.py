@@ -1,3 +1,5 @@
+"""Discord quiz bot: runs interactive multiple-choice quizzes in a server."""
+
 import os
 import json
 import discord
@@ -21,15 +23,17 @@ MIN_OPTION_LENGTH = 6
 
 # Load quiz data from a JSON file
 def load_quiz_data():
+    """Load and return quiz data from quiz_data.json, or an empty dict."""
     if os.path.exists("quiz_data.json"):  # Check if the file exists
-        with open("quiz_data.json", "r") as file:
+        with open("quiz_data.json", "r", encoding="utf-8") as file:
             return json.load(file)  # Load and return the JSON data
     return {}
 
 
 # Save quiz data to the JSON file
 def save_quiz_data():
-    with open("quiz_data.json", "w") as file:
+    """Persist the current quiz_data dictionary to quiz_data.json."""
+    with open("quiz_data.json", "w", encoding="utf-8") as file:
         json.dump(quiz_data, file, indent=4)
 
 
@@ -39,7 +43,16 @@ quiz_data = load_quiz_data()
 quizzes = {}
 
 
-class Quiz:
+class Quiz:  # pylint: disable=too-many-instance-attributes,too-few-public-methods
+    """Holds all state for a single running quiz session.
+
+    Eight attributes are required to fully track a quiz session
+    (name, starter, index, votes, multi-answer flag, active view,
+    vote count, and votes message), which exceeds pylint's default
+    limit of seven.  The class exposes only one public method because
+    it is a state-container; the bot commands are its public interface.
+    Both disables are intentional and justified.
+    """
     def __init__(self, quiz_name, quiz_starter_id, allow_multiple_answers=False):
         self.quiz_name = quiz_name  # Name of the quiz
         self.quiz_starter_id = quiz_starter_id  # ID of the user who started the quiz
@@ -56,13 +69,16 @@ class Quiz:
 
     # Get the current question based on the index
     def get_current_question(self):
+        """Return the question dict at the current index, or None if finished."""
         if self.current_question_index < len(quiz_data[self.quiz_name]["questions"]):
             return quiz_data[self.quiz_name]["questions"][self.current_question_index]
         return None
 
 
 # Custom View to display quiz buttons
-class QuizView(View):
+class QuizView(View):  # pylint: disable=too-few-public-methods
+    """Discord View that holds one button per quiz option."""
+
     def __init__(self, options, quiz_instance):
         super().__init__()
         self.options = options
@@ -72,13 +88,16 @@ class QuizView(View):
 
 
 # Custom Button for quiz options
-class QuizButton(Button):
+class QuizButton(Button):  # pylint: disable=too-few-public-methods
+    """A single answer-option button attached to a QuizView."""
+
     def __init__(self, label, parent_view):
         super().__init__(label=label, style=discord.ButtonStyle.primary)
         self.parent_view = parent_view
 
     # Callback when a button is clicked
     async def callback(self, interaction: discord.Interaction):
+        """Handle a button click: record the user's vote and confirm it."""
         user_id = interaction.user.id
         quiz_instance = self.parent_view.quiz_instance
 
@@ -128,6 +147,7 @@ class QuizButton(Button):
 
 @bot.command()
 async def start_quiz(ctx, quiz_name: str, allow_multiple_answers: bool = False):
+    """Start a quiz in the current channel."""
     if quiz_name not in quiz_data:  # Check if the quiz exists
         await ctx.send("Quiz not found.")
         return
@@ -143,6 +163,7 @@ async def start_quiz(ctx, quiz_name: str, allow_multiple_answers: bool = False):
 
 
 async def send_question(ctx, quiz_instance):
+    """Advance to the next question and post it, or end the quiz."""
     quiz_instance.current_question_index += 1
 
     # Check if the quiz has ended
@@ -183,8 +204,45 @@ async def send_question(ctx, quiz_instance):
     quiz_instance.votes_message = votes_message
 
 
+def _build_results_table(votes: dict) -> str:
+    """Build and return a plain-text results table from the current votes dict."""
+    total_votes = sum(v for v in votes.values() if isinstance(v, int))
+
+    # Find longest quiz option (for result table formatting)
+    longest_option_length = MIN_OPTION_LENGTH
+    for option in votes:
+        if isinstance(votes[option], int):
+            longest_option_length = max(len(option), longest_option_length)
+            if longest_option_length >= MAX_OPTION_LENGTH:
+                longest_option_length = MAX_OPTION_LENGTH
+                break
+
+    option_spaces = max(MIN_OPTION_LENGTH, longest_option_length)
+    result_table = (
+        "Results\nOption "
+        + " " * max(longest_option_length - MIN_OPTION_LENGTH, 0)
+        + "| Count | %\n"
+    )
+    result_table += "-" * (16 + option_spaces) + "\n"
+
+    for option in votes:
+        if isinstance(votes[option], int):
+            vote_count = votes[option]
+            percentage = (vote_count / total_votes * 100) if total_votes > 0 else 0
+            display = (
+                option[: MAX_OPTION_LENGTH - 3] + "..."
+                if len(option) > MAX_OPTION_LENGTH
+                else option
+            )
+            result_table += f"{display.ljust(option_spaces)}"
+            result_table += f" | {str(vote_count).ljust(5)} | {percentage:.2f}%\n"
+
+    return result_table
+
+
 @bot.command()
 async def next_question(ctx):
+    """Move to the next question; show results for the current one first."""
     channel_id = ctx.channel.id
     if channel_id not in quizzes:
         await ctx.send(
@@ -219,38 +277,7 @@ async def next_question(ctx):
 
     # Display results if at least one question has been asked
     if quiz_instance.current_question_index >= 0:
-        total_votes = sum(v for v in quiz_instance.votes.values() if isinstance(v, int))
-
-        # Find longest quiz option (for result table formatting)
-        longest_option_length = MIN_OPTION_LENGTH
-        for option in quiz_instance.votes:
-            if isinstance(quiz_instance.votes[option], int):
-                longest_option_length = max(len(option), longest_option_length)
-                if longest_option_length >= MAX_OPTION_LENGTH:
-                    longest_option_length = MAX_OPTION_LENGTH
-                    break
-
-        # Spaces for option portion of table
-        option_spaces = max(MIN_OPTION_LENGTH, longest_option_length)
-        # Build header + separator based on option length
-        result_table = (
-            "Results\nOption "
-            + " " * max(longest_option_length - MIN_OPTION_LENGTH, 0)
-            + "| Count | %\n"
-        )
-        result_table += "-" * (16 + option_spaces) + "\n"
-
-        for option in quiz_instance.votes:
-            if isinstance(quiz_instance.votes[option], int):
-                vote_count = quiz_instance.votes[option]
-                percentage = (vote_count / total_votes * 100) if total_votes > 0 else 0
-                if len(option) > MAX_OPTION_LENGTH:
-                    option = (
-                        option[: MAX_OPTION_LENGTH - 3] + "..."
-                    )  # Truncate long options
-                result_table += f"{option.ljust(option_spaces)}"
-                result_table += f" | {str(vote_count).ljust(5)} | {percentage:.2f}%\n"
-
+        result_table = _build_results_table(quiz_instance.votes)
         await ctx.send(f"```{result_table}```")
 
     # Move to the next question
@@ -260,6 +287,7 @@ async def next_question(ctx):
 # Command to upload a new quiz via a JSON file
 @bot.command()
 async def upload_quiz(ctx):
+    """Upload a new quiz by attaching a JSON file to this command."""
     if not ctx.message.attachments:
         await ctx.send("Please attach a JSON file with the quiz data.")
         return
@@ -287,6 +315,7 @@ async def upload_quiz(ctx):
 # Command to forcefully quit a quiz
 @bot.command()
 async def force_quit(ctx):
+    """Forcefully end any running quiz in this channel (requires Manage Messages)."""
     channel_id = ctx.channel.id
 
     # Check if the user has "Manage Messages" permission or is the bot owner
