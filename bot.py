@@ -232,7 +232,7 @@ async def next_question(ctx):
 
         # Spaces for option portion of table
         option_spaces = max(MIN_OPTION_LENGTH, longest_option_length)
-        # Build header + seperator based on option length
+        # Build header + separator based on option length
         result_table = (
             "Results\nOption "
             + " " * max(longest_option_length - MIN_OPTION_LENGTH, 0)

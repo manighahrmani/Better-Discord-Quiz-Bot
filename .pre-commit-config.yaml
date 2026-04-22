@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-yaml
+      - id: check-merge-conflict
+
+  - repo: local
+    hooks:
+      - id: check-quiz-options
+        name: Check quiz option length and code blocks
+        entry: python3 scripts/check_quiz.py
+        language: system
+        files: '\.json$'
+        pass_filenames: true

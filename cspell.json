@@ -1,0 +1,42 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Álvaro",
+    "Ayodeji",
+    "behaviours",
+    "colour",
+    "colours",
+    "Dhivyah",
+    "dotenv",
+    "Gryffindor",
+    "Hufflepuff",
+    "initialise",
+    "Kimi",
+    "loudify",
+    "mainloop",
+    "Michaelrbparker",
+    "micfun123",
+    "MYCLASS",
+    "nloudify",
+    "Nooooooooooooooooooooooooo",
+    "organise",
+    "passkey",
+    "pycord",
+    "Ravenclaw",
+    "skywalker",
+    "Slytherin",
+    "specialised",
+    "Spide",
+    "spidey",
+    "textvariable",
+    "Tkinter",
+    "Toplevel",
+    "venv"
+  ],
+  "ignorePaths": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/*.lock"
+  ]
+}
