@@ -1,89 +1,763 @@
 {
-    "quiz1": {
+    "lecture_10": {
         "questions": [
             {
-                "question": "What is the capital of France?",
+                "question": "Which statements about OOP in Python are correct? (Select all that apply)",
                 "options": [
-                    "Paris",
-                    "London",
-                    "Berlin"
+                    "A) self refers to the class itself",
+                    "B) Instance variables store data unique to instance",
+                    "C) Methods represent behaviours of an object",
+                    "D) Constructor is called when object is created",
+                    "E) Instance vars must match parameter names",
+                    "F) Methods are variables inside a class",
+                    "G) __str__ prints instance variables"
                 ]
             },
             {
-                "question": "What is 2 + 2?",
+                "question": "What kind of object is `'3'`?",
                 "options": [
+                    "A) int object",
+                    "B) char object",
+                    "C) str object",
+                    "D) string object"
+                ]
+            },
+            {
+                "question": "When would you create custom classes? (Select all that apply)",
+                "options": [
+                    "A) Shopping cart for e-commerce",
+                    "B) A calculator",
+                    "C) Inventory system for bookshop",
+                    "D) Math functions",
+                    "E) A quiz platform"
+                ]
+            },
+            {
+                "question": "Which are valid Python class names? (Select all that apply)",
+                "options": [
+                    "A) Vehicle2",
+                    "B) MonsterTrucks",
+                    "C) My_Class",
+                    "D) BankAccount",
+                    "E) electricScooters",
+                    "F) Morley'sChickenWings"
+                ]
+            },
+            {
+                "question": "Which would be instance variables in a `Car` class? (Select all that apply)",
+                "options": [
+                    "A) slow_down",
+                    "B) fuel_level",
+                    "C) number_of_doors",
+                    "D) turn_on_heating",
+                    "E) driver",
+                    "F) number_plate",
+                    "G) engine_type"
+                ]
+            },
+            {
+                "question": "What does the following `__str__` method do?\n```python\ndef __str__(self):\n    return f\"{self.driver} is driving a {self.engine_type} car at {self.speed * 1.60934} kph\"\n```",
+                "options": [
+                    "A) Returns string representing the class",
+                    "B) Returns string representing a car object",
+                    "C) Prints formatted string for car details",
+                    "D) Calculates current state of the car",
+                    "E) Returns all instance variables"
+                ]
+            },
+            {
+                "question": "How many issues (warnings) can you spot in the following code?\n```python\nclass Employee:\n\n    def __init__(self, employee_name, salary):\n        self.name = employee_name\n        self.salary = 20000\n\n    def promote(self):\n        if self.salary < 3000:\n            salary = 3000\n\n    def __str__(self):\n        output = f\"Employee with the name {self.name}\"\n        output = f\"And salary of \u00a3{self.salary}\"\n        print(output)\n        return output\n```",
+                "options": [
+                    "A) 0",
+                    "B) 1",
+                    "C) 2",
+                    "D) 3",
+                    "E) 4"
+                ]
+            },
+            {
+                "question": "What would NOT be a possible output of the `test_hat` function?\n```python\nimport random\n\nclass Hat:\n\n    def __init__(self):\n        self.houses = []\n\n    def sort(self, name):\n        print(name, \"is in\", random.choice(self.houses))\n\n    def add(self, house):\n        self.houses.append(house)\n\n    def remove(self, house):\n        if house in self.houses:\n            self.houses.remove(house)\n\n    def __str__(self):\n        return f\"Houses: {', '.join(self.houses)}\"\n\ndef test_hat():\n    hat = Hat()\n    hat.add(\"Slytherin\")\n    hat.remove(\"Gryffindor\")\n    hat.add(\"Gryffindor\")\n    hat.add(\"Hufflepuff\")\n    hat.add(\"Ravenclaw\")\n    hat.remove(\"Hufflepuff\")\n    hat.sort(\"Harry\")\n    print(hat)\n```",
+                "options": [
+                    "A) Harry is in Slytherin",
+                    "B) Harry is in Gryffindor",
+                    "C) Harry is in Ravenclaw",
+                    "D) Houses: Slytherin, Gryffindor, Ravenclaw",
+                    "E) Houses: Slytherin, Gryffindor, Hufflepuff, Ravenclaw"
+                ]
+            },
+            {
+                "question": "What is the purpose of `__init__`?",
+                "options": [
+                    "A) Define the class name",
+                    "B) Initialise instance variables when object created",
+                    "C) Print the object's details",
+                    "D) Delete an object from memory"
+                ]
+            },
+            {
+                "question": "What does `self` refer to in a class method?",
+                "options": [
+                    "A) The class itself",
+                    "B) The first parameter passed",
+                    "C) The specific instance calling the method",
+                    "D) A global variable"
+                ]
+            },
+            {
+                "question": "Given `my_car = Car('blue')`, what does `my_car.colour` return?",
+                "options": [
+                    "A) Car",
+                    "B) blue",
+                    "C) my_car",
+                    "D) colour"
+                ]
+            },
+            {
+                "question": "What is the difference between a class and an object?",
+                "options": [
+                    "A) No difference",
+                    "B) A class is an instance of an object",
+                    "C) Class is blueprint; object is instance from it",
+                    "D) Object defines methods; class stores data"
+                ]
+            },
+            {
+                "question": "What will `type([1, 2, 3])` return?",
+                "options": [
+                    "A) <class 'int'>",
+                    "B) <class 'list'>",
+                    "C) <class 'tuple'>",
+                    "D) <class 'array'>"
+                ]
+            },
+            {
+                "question": "Which naming convention for Python class names?",
+                "options": [
+                    "A) snake_case (my_class)",
+                    "B) camelCase (myClass)",
+                    "C) PascalCase (MyClass)",
+                    "D) UPPERCASE (MYCLASS)"
+                ]
+            },
+            {
+                "question": "What should `__str__` return?",
+                "options": [
+                    "A) Nothing (None)",
+                    "B) A string representation of the object",
+                    "C) The object itself",
+                    "D) A dictionary of instance variables"
+                ]
+            },
+            {
+                "question": "In `point.move(10, -5)`, what are 10 and -5?",
+                "options": [
+                    "A) Instance variables",
+                    "B) Class attributes",
+                    "C) Arguments passed to the move method",
+                    "D) Return values"
+                ]
+            },
+            {
+                "question": "Why don't we pass `self` when calling `my_car.accelerate(30)`?",
+                "options": [
+                    "A) self is optional",
+                    "B) self is always None",
+                    "C) self is a global variable",
+                    "D) Python automatically passes the object as self"
+                ]
+            },
+            {
+                "question": "What happens accessing `my_point.z` if only `x` and `y` exist?",
+                "options": [
+                    "A) Returns 0",
+                    "B) Returns None",
+                    "C) Raises an AttributeError",
+                    "D) Creates a new attribute z"
+                ]
+            }
+        ]
+    },
+    "lecture_11": {
+        "questions": [
+            {
+                "question": "Considering Privacy, Composition, and Inheritance in Object-Oriented Python, which of the following statements is correct? Select all that apply.",
+                "options": [
+                    "Private members must have underscores on both sides of their names.",
+                    "Composition demonstrates an 'is-a' relationship between two classes.",
+                    "Specialised types of a class inherit members from the general type.",
+                    "Class variables are shared among all instances of a class.",
+                    "Child class can override methods but constructor must remain unchanged.",
+                    "Private members can only be accessed within the constructor."
+                ]
+            },
+            {
+                "question": "In a `FootballTeam` class, which one of the following options should be a class variable? Select all that apply.",
+                "options": [
+                    "`team_name`",
+                    "`number_of_players`",
+                    "`team_coach`",
+                    "`team_colour`",
+                    "`team_sponsor`"
+                ]
+            },
+            {
+                "question": "We have a `Safe` class where `_passkey` is a private instance variable. Which of the following methods could be used to print the passkey from outside the class? Select the correct answer.",
+                "options": [
+                    "`@property _passkey`",
+                    "`@property passkey`",
+                    "`@passkey.setter _passkey`",
+                    "`@passkey.setter passkey`"
+                ]
+            },
+            {
+                "question": "In which scenarios would you most likely use composition? Select all that apply.",
+                "options": [
+                    "Creating a system to manage and organise `Animal`s in a zoo.",
+                    "A player vs AI game with `Player` and `Computer` classes.",
+                    "Making a website for a `Company` with `Employee`s and `Department`s.",
+                    "A number guessing game comparing user input with a mystery number.",
+                    "An online `Dashboard` with interactive `Widget`s."
+                ]
+            },
+            {
+                "question": "Consider a `Vehicle` class with methods `accelerate` and `brake`. You then create a `Car` class that inherits from `Vehicle`. Which of the following statements are true? Select all that apply.",
+                "options": [
+                    "The `Car` class inherits the `accelerate` method from `Vehicle`.",
+                    "The `Car` class needs to define its own `brake` method to use it.",
+                    "The `Car` class cannot have any other methods besides `accelerate` and `brake`.",
+                    "The `Vehicle` class can use methods defined in the `Car` class.",
+                    "The `Car` class is a subclass of `Vehicle`."
+                ]
+            },
+            {
+                "question": "Which of the following are errors with the code snippet below:\n```python\nclass Character:\n\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        return f\"My name is {name}, and I am {age} years old.\"\n\nclass Hero(Character):\n\n    def __init__(self, name, age, power):\n        super().__init__(name)\n        self.power = power\n\n    def fight(self):\n        return f\"{self.name} is fighting with {self.power}!\"\n\nclass Villain(Character):\n\n    def __init__(self, name, age, plan, evil_lair):\n        super().__init__(name, age)\n        self.plan = plan\n\n    def scheme(self):\n        return f\"{self.name} is planning {self.plan} at {self.evil_lair}.\"\n\ndef main():\n    ben = Character(\"Uncle Ben\", 60)\n    spidey = Hero(\"Peter Parker\", 18, \"spidey powers\")\n    goblin = Villain(\"Green Goblin\", 45, \"crush Spide- Man\")\n    print(spidey.introduce())\n    print(spidey.fight())\n    print(ben.introduce())\n    print(ben.fight())\n    print(goblin.introduce())\n    print(goblin.scheme())\n```",
+                "options": [
+                    "Need dot notation to access instance vars in `introduce` method.",
+                    "`Hero` class missing `age` parameter in `super().__init__`.",
+                    "`Villain` class accessing undefined variable in `scheme` method.",
+                    "`main` function calling a method not defined in a class."
+                ]
+            }
+        ]
+    },
+    "lecture_12": {
+        "questions": [
+            {
+                "question": "Select all the correct choices in context of Graphical User Interfaces in Python.",
+                "options": [
+                    "Widgets generate events and are managed by `mainloop`.",
+                    "`pack` and `grid` are primary methods for creating widgets in Tkinter.",
+                    "In procedural programming, user input must be handled manually.",
+                    "Control variables can be used by widgets to update and retrieve values.",
+                    "`Button` widget is useful when linked to a callback function or method."
+                ]
+            },
+            {
+                "question": "Which statement is correct about the `Tk` class? Select all that apply.",
+                "options": [
+                    "It is the parent for all other widgets in a Tkinter app.",
+                    "It is used to create a window for the GUI.",
+                    "It manages the layout and size of the root window.",
+                    "It has methods like `title` and `geometry` to customize the window.",
+                    "It is the same as the `Frame` widget."
+                ]
+            },
+            {
+                "question": "In the Calculator app, what is the widget type of the parent of the `label_num1` widget?",
+                "options": [
+                    "`win`",
+                    "`self.main_frame`",
+                    "`GraphWin`",
+                    "`Tk`",
+                    "`Frame`"
+                ]
+            },
+            {
+                "question": "Select all correct statements about the `pack` and `grid` geometry manager methods of widgets.",
+                "options": [
+                    "`grid` organizes widgets in a table-like structure.",
+                    "`pack` respects the order in which widgets are defined in our code.",
+                    "`pack` allows vertical or horizontal placement, but not simultaneously.",
+                    "`grid` is suitable for aligning widgets to specific rows and columns."
+                ]
+            },
+            {
+                "question": "You want to create a label in Tkinter that displays a user's phone number. Which type of Tkinter variable would you use to store this value?",
+                "options": [
+                    "`IntVar`",
+                    "`DoubleVar`",
+                    "`BooleanVar`",
+                    "`StringVar`"
+                ]
+            },
+            {
+                "question": "Identify the correct steps to fix the following Tkinter app. Select all that apply.\n```python\nclass StarWarsQuotes:\n\n    def __init__(self):\n        self.win = Tk()\n        self.win.geometry(\"200x100\")\n\n        self.quote = StringVar()\n\n        self.quote_list = [\n            \"May the force be with you\",\n            \"I am your father\",\n            \"It's a trap\",\n        ]\n        first_quote = self.quote_list[0]\n        self.quote.get(first_quote)\n\n    def create_widgets(self):\n        label = Label(self.win, text=self.quote)\n        label.pack()\n\n        button = Button(self.win, textvariable=\"Click to submit\", command=self.change_quote(self.quote))\n        button.pack()\n\n    def change_quote(self, quote):\n        new_quote = random.choice(self.quote_list)\n        self.quote.set(new_quote)\n\n    def run(self):\n        self.create_widgets()\n        self.win.mainloop()\n```",
+                "options": [
+                    "The `text` argument of `Button` should be set, not `textvariable`.",
+                    "`change_quote` needs to `get` the value before it can `set` it.",
+                    "`change_quote` doesn't need a parameter to be passed to it.",
+                    "The `command` should be a function reference, not a call.",
+                    "`self.quote` needs to be the `textvariable` of the `Label` widget.",
+                    "The `quote` instance variable should be set to first quote in constructor."
+                ]
+            }
+        ]
+    },
+    "lecture_13": {
+        "questions": [
+            {
+                "question": "Which of the following statements about Tkinter and event-driven programming in Python is correct? Select all that apply.",
+                "options": [
+                    "The frontend transforms backend data into easy-to-understand visuals.",
+                    "The frontend of apps cannot make changes to backend data.",
+                    "You can return a value back to the caller using lambda functions.",
+                    "You can use lambda for callbacks that captures the values of the loop.",
+                    "Apps with multiple windows usually use a Toplevel for each secondary window."
+                ]
+            },
+            {
+                "question": "What are the benefits of separating the frontend and backend of a Tkinter application into different classes? Select all that apply.",
+                "options": [
+                    "It allows for a clear separation of the application's logic and presentation.",
+                    "It simplifies code maintenance and debugging.",
+                    "It is a mandatory practice for all Tkinter applications.",
+                    "The frontend can operate completely independently of any backend logic."
+                ]
+            },
+            {
+                "question": "What is the output of the following code?\n```python\napply = lambda f, x: f(x)\nresult = apply(lambda n: pow(n, 3), 4)\nprint(result)\n```",
+                "options": [
+                    "12",
+                    "64",
+                    "81",
+                    "Error: lambda cannot be passed as argument"
+                ]
+            },
+            {
+                "question": "Given following lambda functions, which of the following outputs `WAKE UP, KIMI!!!` twice? Select the correct option.\n```python\nloudify = lambda s: s.upper() + '!!!'\nalarm = lambda name: f'Wake up, {name}'\ndouble = lambda x: x * 2\n```",
+                "options": [
+                    "loudify(alarm('Kimi'))",
+                    "alarm(loudify('Kimi'))",
+                    "double(alarm('Kimi'))",
+                    "double(alarm(loudify('Kimi')))",
+                    "double(loudify(alarm('Kimi')))",
+                    "loudify(double(alarm('Kimi')))",
+                    "alarm(double(loudify('Kimi')))"
+                ]
+            },
+            {
+                "question": "What will be the output of `print(f\"{mystery(1)}, {mystery(2, mystery(1))}\")` ? Select the correct option.\n```python\ndef mystery(a, b=[]):\n    b.append(a)\n    return b\n```",
+                "options": [
+                    "[1], [1, 2]",
+                    "[1], [2]",
+                    "[1], [2], [1]",
+                    "[1], [1, 1, 2]",
+                    "[1, 1, 2], [1, 1, 2]"
+                ]
+            },
+            {
+                "question": "In a Tkinter application, what is the hierarchy relationship between `Tk` and `Toplevel` widgets? Select the correct option.",
+                "options": [
+                    "Tk is the parent of Toplevel.",
+                    "Tk is the child of Toplevel.",
+                    "Toplevel is a parent of Tk.",
+                    "Toplevel is a sibling of Tk (they share the same parent)."
+                ]
+            },
+            {
+                "question": "What does `widget.config(text='Updated')` do in Tkinter?",
+                "options": [
+                    "Changes the text attribute of an existing widget after creation",
+                    "Creates a new widget with the text 'Updated'",
+                    "Destroys the widget and rebuilds it with new text",
+                    "Raises an error because widgets are immutable after creation"
+                ]
+            },
+            {
+                "question": "Take the following app:\n```python\nclass MoreStarWarsStuff:\n\n    def __init__(self):\n        self.darth_vader = Tk()\n        self.luke_skywalker = Toplevel(self.darth_vader)\n\n    def create_widgets(self):\n        darth_label = Label(self.darth_vader)\n        darth_label.pack()\n        luke_label = Label(self.luke_skywalker)\n        luke_label.pack()\n        darth_button = Button(\n            self.darth_vader,\n            text=\"Darth Button\",\n            command=# INSERT CODE HERE\n        )\n        darth_button.pack()\n\n    def darth_handler(self, parent_label, child_label):\n        parent_label.config(text=\"Luke, I am your father.\")\n        child_label.config(text=\"Nooooooooooooooooooooooooo!\")\n```\nWhat should be the `command` parameter in the `Button` widget to call the `darth_handler` method with the correct arguments?",
+                "options": [
+                    "self.darth_handler(darth_label, luke_label)",
+                    "self.darth_handler(luke_label, darth_label)",
+                    "lambda: self.darth_handler(darth_button, darth_label)",
+                    "lambda: self.darth_handler(darth_label, darth_button)",
+                    "lambda: self.darth_handler(darth_label, luke_label)"
+                ]
+            }
+        ]
+    },
+    "lecture_14": {
+        "questions": [
+            {
+                "question": "Select all correct statements about debugging, exceptions, errors, and exception handling in Python.",
+                "options": [
+                    "Debugging identifies and fixes syntax errors before execution.",
+                    "An `IndentationError` occurs when indented with 2-3 spaces, not 4.",
+                    "Exception handling prevents program crashes when exceptions occur.",
+                    "A `SyntaxError` occurs when the parser encounters code breaking conventions.",
+                    "Breakpoints pause execution at specified lines to inspect program state.",
+                    "`try`/`except` are used to catch and handle exceptions when testing the app.",
+                    "Using `raise` makes the interpreter detect exception during parsing."
+                ]
+            },
+            {
+                "question": "What will be the result of executing the following code?\n```python\nx = \"Hello\"\nprint(x + 5)\n```",
+                "options": [
+                    "The code will print \"Hello5\".",
+                    "The code will cause a `TypeError`.",
+                    "The code will cause a `NameError`.",
+                    "The code will cause a `SyntaxError`.",
+                    "The code will print \"Hello\" and then the number 5."
+                ]
+            },
+            {
+                "question": "What are three elements that you might find in a traceback?",
+                "options": [
+                    "File path, line number, and Python version",
+                    "File path, syntax error, and exception",
+                    "Exception name, line number, and Python version",
+                    "Function name, Python version, and syntax error",
+                    "File path, line number, and exception"
+                ]
+            },
+            {
+                "question": "What will happen when the following code is executed and the user enters 0?\n```python\na = 15\nb = input(\"Enter a number: \")\ntry:\n    output = a / b\nexcept ValueError:\n    print(\"Error occurred\")\nprint(\"The output is: \" + output)\n```",
+                "options": [
+                    "It will print \"Error occurred\".",
+                    "It causes a `TypeError` as strings and floats cannot be concatenated.",
+                    "It causes a `TypeError` as an integer cannot be divided by a string.",
+                    "It causes a `ValueError` as the value of output will be infinity.",
+                    "It causes a `ZeroDivisionError` as a number is divided by zero.",
+                    "It will run without any output."
+                ]
+            },
+            {
+                "question": "Consider the following code. Select all correct statements about raising and handling exceptions.\n```python\ndef process_order(quantity):\n    if quantity < 0:\n        raise ValueError(\"Quantity cannot be negative\")\n    return f\"Order processed for {quantity} items\"\n\ndef main():\n    try:\n        q = int(input(\"Enter quantity: \"))\n        print(process_order(q))\n    except ValueError as e:\n        print(f\"Error: {e}\")\n```",
+                "options": [
+                    "Exception raised inside `process_order` when quantity is negative.",
+                    "When converting user input in `main`, the raised exception is handled.",
+                    "The `process_order` function catches its own exception internally.",
+                    "Raising an exception signals an error to be handled by calling code.",
+                    "The `main` function can handle all kinds of exceptions raised."
+                ]
+            },
+            {
+                "question": "What does 'stepping over' in debugging mean?",
+                "options": [
+                    "To skip the execution of the current line.",
+                    "To execute the current line and move to the next.",
+                    "To enter a function called in the current line.",
+                    "To restart the program from the beginning.",
+                    "To terminate the debugging session.",
+                    "To jump to a specific line in the code."
+                ]
+            },
+            {
+                "question": "A breakpoint is set on the line marked with a comment (🛑). Select all correct statements.\n```python\nclass MyPoint:\n\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def move(self, dx, dy):\n        self.x += dx\n        self.y += dy\n\n    def __str__(self):\n        return f\"MyPoint({self.x}, {self.y})\"\n\nclass MyCircle:\n\n    def __init__(self, centre, radius):\n        self.centre = centre\n        self.radius = radius\n\n    def move(self, dx, dy):\n        self.centre.move(dx, dy)\n\n    def __str__(self):\n        return f\"MyCircle({self.centre}, {self.radius})\"\n\ndef test_my_circle():\n    centre = MyPoint(100, 50)\n    circle = MyCircle(centre, 50)\n    print(\"circle's centre is\", circle.centre)  # 🛑 breakpoint\n    circle.move(10, -20)\n    print(\"circle's centre is\", circle.centre)\n```",
+                "options": [
+                    "\"Step Into\" calls the print statement and moves debugger to next line.",
+                    "\"Step Into\" will move the debugger into the parameters of `print`.",
+                    "After \"Step Out\" the debugger will move out of the `print` function.",
+                    "After \"Step Over\" the debugger will skip over the `move` method.",
+                    "After \"Resume\" the debugger will run to the end of the program."
+                ]
+            }
+        ]
+    },
+    "lecture_15": {
+        "questions": [
+            {
+                "question": "Select all the correct statements about static compiled low-level programs, specifically, Dart.",
+                "options": [
+                    "Data types are declared in static languages to prevent out-of-range errors.",
+                    "Dart SDK includes a compiler, debugger, Dart shell & package manager.",
+                    "Every Dart file needs to have a `main` function.",
+                    "Dart compiler throws an error if value doesn't match its declared type.",
+                    "`~/` is used for integer division as `//` is reserved for comments.",
+                    "No need for `{}` in Dart when string interpolating values or variables."
+                ]
+            },
+            {
+                "question": "What are the characteristics of interpreted languages? Select all that apply.",
+                "options": [
+                    "They require an interpreter at runtime.",
+                    "They are generally slower than compiled languages.",
+                    "They cannot be used for cross-platform application development.",
+                    "They are primarily used for scripting or high-level programming.",
+                    "We cannot specify data types of variables in interpreted code."
+                ]
+            },
+            {
+                "question": "Which of the following statements about compiled languages is true? Select the correct answer.",
+                "options": [
+                    "The \"build\" step for compiled languages is faster than interpreted.",
+                    "Compiled scripts are directly executed by the OS for faster performance.",
+                    "Compiled languages require software that translates and runs code line by line.",
+                    "Compiled languages are primarily used for building apps or GUIs.",
+                    "Dart can be compiled to JavaScript or an executable without an interpreter."
+                ]
+            },
+            {
+                "question": "Which of these is a valid way to declare a string variable in Dart? Select all the correct choices.",
+                "options": [
+                    "`string name = \"Ayodeji\";`",
+                    "`String name = 'Ayodeji';`",
+                    "`var name = Ayodeji;`",
+                    "`name = 'Ayodeji';`",
+                    "`String name == \"Ayodeji\";`"
+                ]
+            },
+            {
+                "question": "What is the output of the following Dart code? Select the correct answer.\n```dart\ndouble price = 3.5;\nint amount = 2;\nprint('Total: $${price * amount}');\n```",
+                "options": [
+                    "`Total: $3.5 * 2`",
+                    "`Total: $7.0`",
+                    "`Total: 7.0`",
+                    "`Total: $7`",
+                    "`Total: 7`",
+                    "`Error`"
+                ]
+            },
+            {
+                "question": "What will be the output of the following Dart code? Select the correct answer.\n```dart\nint a = 9;\nint b = 2;\na ~/= b;\nb += a;\nprint(a * b);\n```",
+                "options": [
+                    "24",
+                    "2",
+                    "18",
+                    "20",
+                    "16"
+                ]
+            },
+            {
+                "question": "The type of the following functions has not been declared. Select all the correct options:\n```dart\ngreet() {\n  var age = \"20\";\n  return double.parse(age);\n}\n```\n```dart\nimport 'dart:io';\ngetANumber() {\n  print('Enter a number:');\n  var a = stdin.readLineSync();\n  return a;\n}\n```\n```dart\nimport 'dart:io';\ncheckEven() {\n  print('Enter a number:');\n  int num = int.parse(stdin.readLineSync());\n  return num % 2 == 0;\n}\n```\n```dart\nimport 'dart:io';\nprintName() {\n  print('Enter your name:');\n  String? name = stdin.readLineSync();\n  print('Hello, ${name!.toUpperCase()}');\n}\n```\n```dart\ndivideNumbers() {\n  int a = 40;\n  int b = 8;\n  return a / b;\n}\n```\n```dart\nimport 'dart:math';\ncalculateSquareRoot() {\n  int num = 5;\n  return sqrt(num);\n}\n```",
+                "options": [
+                    "`greet` returns a `double`",
+                    "`getANumber` returns a `String`",
+                    "`checkEven` returns a `bool`",
+                    "`printName` returns a `String`",
+                    "`divideNumbers` returns an `int`",
+                    "`calculateSquareRoot` returns a `double`"
+                ]
+            }
+        ]
+    },
+    "lecture_16": {
+        "questions": [
+            {
+                "question": "Select all correct statements about Dart's functions and control flow.",
+                "options": [
+                    "`void` keyword defines functions that do not return a value.",
+                    "`while` loops can only iterate a known number of times.",
+                    "Null safety helps prevent creating variables that can be `null`.",
+                    "We can cover multiple cases at once in a `switch` statement.",
+                    "Adding `{}` around parameters makes them named parameters."
+                ]
+            },
+            {
+                "question": "Given the following function definition, select the correct answer.\n```dart\nvoid greet(String? name) {\n  print(\"Hello, ${name ?? 'stranger'}!\");\n}\n```",
+                "options": [
+                    "`greet();` prints \"Hello, stranger!\"",
+                    "`greet(null);` prints \"Hello, stranger!\"",
+                    "`greet(3);` prints \"Hello, stranger!\"",
+                    "`greet(\"Aya\");` prints \"Hello, Aya!\"",
+                    "`greet('')` prints \"Hello, stranger!\"."
+                ]
+            },
+            {
+                "question": "What is the purpose of `List<String> arguments` in the `main` function?",
+                "options": [
+                    "To specify default values for all functions in the program.",
+                    "To pass a fixed number of required arguments to `main`.",
+                    "To receive a list of `String`s when `main` is run from other files.",
+                    "To receive a list of `String`s when run from the command-line."
+                ]
+            },
+            {
+                "question": "Which functions can be converted into an arrow function? Select all that apply.\n```dart\n// A\nvoid printNumber() {\n  print(5);\n}\n\n// B\nint addNumbers(int a, int b) {\n  return a + b;\n}\n\n// C\ndouble circleArea(double radius) {\n  print(\"Calculating...\");\n  return pi * pow(radius, 2);\n}\n\n// D\nString shout(String message) {\n  String loudMessage = message.toUpperCase();\n  return loudMessage;\n}\n\n// E\nint triple(int x) {\n  int result = x * 3;\n  return result;\n}\n```",
+                "options": [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E"
+                ]
+            },
+            {
+                "question": "What will this program print given `x = 12` and `y = 21`? Select the correct answer.\n```dart\nif (x > y) {\n  print(1);\n} else if (x < y) {\n  if (x != 10 && y == 20) {\n    print(2);\n  } else {\n    print(3);\n  }\n} else {\n  print(4);\n}\n```",
+                "options": [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+                ]
+            },
+            {
+                "question": "What is the value of `a` when this loop terminates? Select the correct answer.\n```dart\nint a = 10;\nwhile(a > 5) {\n  a -= 2;\n}\n```",
+                "options": [
+                    "5",
+                    "4",
+                    "3",
+                    "6"
+                ]
+            },
+            {
+                "question": "Which for loop correctly prints 100, 80, 60, 40, 20? Select the correct answer.\n```dart\n// A\nfor(int i = 10; i <= 100; i++) {\n  print(i);\n}\n\n// B\nfor(int i = 2; i <= 10; i++) {\n  print(i * 10);\n}\n\n// C\nfor(int i = 2; i <= 10; i = i + 2) {\n  print(i * 10);\n}\n\n// D\nfor(int i = 10; i > 2; i = i - 2) {\n  print(i * 10);\n}\n\n// E\nfor (int i = 100; i >= 0; i -= 20) {\n  print(i);\n}\n\n// F\nfor (int i = 100; i > 0; i = i - 20) {\n  print(i);\n}\n```",
+                "options": [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E",
+                    "F"
+                ]
+            }
+        ]
+    },
+    "lecture_17": {
+        "questions": [
+            {
+                "question": "Select all true statements about Strings, Lists, Sets, and Maps in Dart.",
+                "options": [
+                    "List elements can be modified at runtime but not at compile time.",
+                    "In `l = {1: '😎', 2: '🤩'}`, `l[x] = '😍'` creates an entry if x isn't 1 or 2.",
+                    "`List<Object> list = [1, 'two', 3.0];` causes an error.",
+                    "`remove` on a List removes all occurrences of the element.",
+                    "Inserting '🐒' at index 1 of `['🐓','🐄','🐖']` → `['🐓','🐄','🐒','🐖']`.",
+                    "For-in over a Set accesses elements in insertion order."
+                ]
+            },
+            {
+                "question": "What is the first step of converting `\"apples_and_pears\"` to `\"applesAndPears\"`?",
+                "options": [
+                    "Use `toUpperCase` on the first letter of the second word.",
+                    "Split the string by `\"_\"` into a `List` of substrings.",
+                    "Reverse the string by first splitting by `\"\"`.",
+                    "Use `contains` to check for underscores.",
+                    "Find each word's first letter position with `indexOf`."
+                ]
+            },
+            {
+                "question": "What is the output of `print('Flutter'.indexOf('t'))`? Select all that apply.",
+                "options": [
+                    "2",
                     "3",
                     "4",
-                    "5"
+                    "3 and 4",
+                    "2 and 3"
+                ]
+            },
+            {
+                "question": "Which `String` methods can be used to locate a substring within a `String`? Select all that apply.",
+                "options": [
+                    "`startsWith()`",
+                    "`endsWith()`",
+                    "`contains()`",
+                    "`split()`",
+                    "`join()`",
+                    "`substring()`"
+                ]
+            },
+            {
+                "question": "Which is the correct way to define a `List` of `String`s in Dart?",
+                "options": [
+                    "`List<String> colours = List<String>('Red', 'Green', 'Blue');`",
+                    "`List colours = ['Red', 'Green', 'Blue'];`",
+                    "`String[] colours = ['Red', 'Green', 'Blue'];`",
+                    "`List<String> colours = List.filled('Red', 'Green', 'Blue');`",
+                    "`List<String> colours = ['Red', 'Green', 'Blue'];`"
+                ]
+            },
+            {
+                "question": "Which function correctly adds a given integer to each element and returns the modified list? Select the correct answer.\n```dart\n// A\nList<int> addToList(List<int> list, int addition) {\n  for (int number in list) {\n    number += addition;\n  }\n  return list;\n}\n\n// B\nList<int> addToList(List<int> list, int addition) {\n  for (int element of list) {\n    element = element + addition;\n  }\n  return list;\n}\n\n// C\nList<int> addToList(List<int> list, int addition) {\n  for (int i = 0; i <= list.length; i++) {\n    list[i] += addition;\n  }\n  return list;\n}\n\n// D\nList<int> addToList(List<int> list, int addition) {\n  for (int i = 0; i < list.length; i = i + 1) {\n    list[i] = list[i] + addition;\n  }\n  return list;\n}\n```",
+                "options": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                ]
+            },
+            {
+                "question": "What will happen if the function below is called with `{'milkshake', 'pizza', 'banana milk', 'cheesy chips'}`?\n```dart\nvoid lactoseIntolerant(Set<String> foods) {\n  for (String food in foods) {\n    if (food.contains('milk')) {\n      foods.remove(food);\n    }\n  }\n  print(foods);\n}\n```",
+                "options": [
+                    "It will print `{'pizza', 'cheesy chips'}`",
+                    "It will print `{'pizza'}`",
+                    "It will print `{'milkshake', 'pizza', 'banana milk', 'cheesy chips'}`",
+                    "An error will occur during the first iteration of the loop",
+                    "The function will enter an infinite loop"
+                ]
+            },
+            {
+                "question": "Which of the following removes the second key-value pair from the `Map` below?\n```dart\nMap<String, int> scores = {'Dhivyah': 90, 'Álvaro': 85};\n```",
+                "options": [
+                    "`scores.delete('Álvaro');`",
+                    "`scores.remove('Álvaro');`",
+                    "`scores.delete(1);`",
+                    "`scores.delete(85);`",
+                    "`scores.remove('Álvaro', 85);`",
+                    "`scores.remove = scores.last;`"
+                ]
+            },
+            {
+                "question": "What does the following Dart function print?\n```dart\nvoid checkProduct() {\n  Map<String, double> prices = {\n    'Bread': 1.5,\n    'Milk': 1.0,\n    'Eggs': 2.0,\n  };\n  if (prices.containsKey('Egg')) {\n    print('Eggs cost :' + prices['Eggs'].toString());\n  }\n}\n```",
+                "options": [
+                    "`Eggs cost £null`",
+                    "`Eggs cost £2.0`",
+                    "`Eggs cost £${2.0}`",
+                    "Nothing",
+                    "An error occurs"
                 ]
             }
         ]
     },
-    "quiz2": {
+    "lecture_18": {
         "questions": [
             {
-                "question": "What is the largest planet?",
+                "question": "Select all the true statements about Object-Oriented Programming (OOP) in Dart.",
                 "options": [
-                    "Earth",
-                    "Jupiter",
-                    "Saturn"
+                    "Need `new` keyword to create objects in Dart.",
+                    "Superclass is declared using `extends`.",
+                    "`Team` can store players in a `List<Player>` instance variable.",
+                    "`user._password` is accessible from another class in the same file.",
+                    "Getters and setters in Dart do not have parameter lists."
                 ]
             },
             {
-                "question": "What is the smallest country?",
+                "question": "Consider the `Phone` class below. Which of the following is the correct way to create a `Phone` object? Select all that apply.\n```dart\nclass Phone {\n  String name;\n  String brand;\n  int memory;\n\n  Phone(this.name, this.brand, {this.memory = 64});\n}\n```",
                 "options": [
-                    "Vatican City",
-                    "Monaco",
-                    "San Marino"
-                ]
-            }
-        ]
-    },
-    "programms": {
-        "questions": [
-            {
-                "question": "What is the capital of France?",
-                "options": [
-                    "Paris",
-                    "London",
-                    "Berlin",
-                    "Madrid"
+                    "`Phone myPhone = Phone('iPhone 12', 'Apple');`",
+                    "`Phone myPhone = Phone('iPhone 12', 'Apple', 64);`",
+                    "`var galaxy = Phone('Galaxy S21', 'Samsung', memory: 128);`",
+                    "`Phone galaxy = Phone(name: 'Galaxy S21', brand: 'Samsung', memory: 128);`",
+                    "`phone galaxy = Phone('Galaxy S21', 'Samsung', memory: 128);`"
                 ]
             },
             {
-                "question": "Which language is known as the 'language of the web'?",
+                "question": "What is the output of the `main` function shown below? Select the correct answer.\n```dart\nclass Rectangle {\n  double width = 0;\n  double height = 0;\n\n  Rectangle(this.width, this.height);\n\n  double getArea() => width * height;\n}\n\nvoid main() {\n  Rectangle myRectangle = Rectangle(3, 4);\n  double area = myRectangle.getArea();\n  print('$area, $myRectangle');\n}\n```",
                 "options": [
-                    "Python",
-                    "JavaScript",
-                    "Java",
-                    "C++"
+                    "`12, Instance of 'Rectangle'`",
+                    "`12.0, Instance of 'Rectangle'`",
+                    "`12.0, Rectangle`",
+                    "`12, Rectangle object at 0x000001C9081DE9D0`",
+                    "`Error: class 'Rectangle' has no instance variable named 'area'.`"
                 ]
             },
             {
-                "question": "What is the result of 2 + 2 * 2?",
+                "question": "Suppose the following `BankAccount` class is in `lect18.dart` and imported into `main.dart`. Which of the following statements is true?\n```dart\nclass BankAccount {\n  String accountNumber;\n  double _balance = 0.0;\n\n  BankAccount(this.accountNumber);\n\n  void deposit(double amount) {\n    _balance += amount;\n  }\n\n  double get balance => _balance;\n}\n```",
                 "options": [
-                    "6",
-                    "8",
-                    "4",
-                    "10"
+                    "`deposit` is accessible in `main.dart`.",
+                    "`balance` can be read in `main.dart`.",
+                    "`balance` can be set in `main.dart`.",
+                    "`_balance` can be read in `main.dart`.",
+                    "`_balance` can be read in `lect18.dart`."
                 ]
             },
             {
-                "question": "Which of the following is a Python framework for web development?",
+                "question": "Consider the following classes. Which statements are true? Select all that apply.\n```dart\nclass Animal {\n  String name;\n\n  Animal(this.name);\n\n  void eat() => print('$name is eating.');\n\n  String toString() => name;\n}\n\nclass Dog extends Animal {\n  String breed;\n\n  Dog(String name, this.breed) : super(name);\n\n  void bark() => print('Woof!');\n\n  String toString() => '$name the $breed';\n}\n```",
                 "options": [
-                    "Django",
-                    "Spring",
-                    "Laravel",
-                    "Ruby on Rails"
-                ]
-            },
-            {
-                "question": "What is the output of `print(type(3.14))` in Python?",
-                "options": [
-                    "<class 'int'>",
-                    "<class 'float'>",
-                    "<class 'str'>",
-                    "<class 'list'>"
+                    "Only `Dog` objects have a `name` instance variable.",
+                    "All `Dog` objects have a `bark` method.",
+                    "`Dog.toString` overrides `Animal.toString`.",
+                    "`super` here is used to call `Animal` constructor.",
+                    "`Animal` cannot be instantiated; only `Dog` can be created."
                 ]
             }
         ]
